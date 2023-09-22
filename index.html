@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Checker</title> 
-    backgr
+    <title>Password Checker</title>
 </head>
 <body style="background-color: black; overflow: hidden;">
     <div>
         <center>
-            <h1 id="Website Title" style="position: relative; top: 50px;">
-                <FONT COLOR="#ffffff">Password Checker</FONT>
+            <h1 id="WebsiteTitle" style="position: relative; top: 50px;">
+                <font color="#ffffff">Password Checker</font>
             </h1>
-            <div id="Description" style="position: relative; top: 70px;">
-                <FONT COLOR="#ffffff">Check if your password is strong enough here!</FONT>
+            <div id="Description" class="" style="position: relative; top: 70px;">
+                <font color="#ffffff">Check if your password is strong enough here!</font>
             </div>
             <label for="Password">Password:</label>
             <div id="Passwordtextbox" style="position: relative; top: 80px;">
-                <input type="text" id="Password" name="Password" placeholder="Enter your password here">
+                <input type="password" id="Password" name="Password" placeholder="Enter your password here">
+                <button onclick="tryPassword()">Check Password</button>
             </div>
         </center>
     </div>
+
+    <script src="PasswordHandler.js"></script>
+    <script>
+        function tryPassword() {
+            const passwordInput = document.getElementById("Password");
+            const userPassword = passwordInput.value;
+
+            // Assuming PasswordHandler is defined in PasswordHandler.js
+            const password = new PasswordHandler(userPassword);
+            // Do something with the passwordHandler object
+            // For example, you can check the password strength here
+        }
+    </script>
 </body>
 </html>
