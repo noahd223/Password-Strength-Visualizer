@@ -19,6 +19,7 @@
                 <input type="password" id="Password" name="Password" placeholder="Enter your password here">
                 <button onclick="tryPassword()">Check Password</button>
             </div>
+            <div id="Returnmessage" style="position: relative; top: 100px;"></div>
         </center>
     </div>
 
@@ -28,10 +29,11 @@
             const passwordInput = document.getElementById("Password");
             const userPassword = passwordInput.value;
 
-            // Assuming PasswordHandler is defined in PasswordHandler.js
             const password = new PasswordHandler(userPassword);
-            // Do something with the passwordHandler object
-            // For example, you can check the password strength here
+            const returnText = document.getElementById("Returnmessage");
+            returnText.innerHTML = "Your password has a score of " + password.computePasswordScore();
+            returnText.style.color = "white";
+
         }
     </script>
 </body>
