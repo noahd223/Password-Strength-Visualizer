@@ -28,3 +28,4 @@ const symbolScoresDictionary = {
     ["|"]: 3,
     ["?"]: 2
 }
+module.exports = {symbolScoresDictionary};

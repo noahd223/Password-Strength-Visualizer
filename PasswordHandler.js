@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { symbolScoresDictionary } = require('./SymbolDirectory');
 
 class PasswordHandler {
     // constructs the PasswordHandler using the entered password in the text field
@@ -9,19 +11,21 @@ class PasswordHandler {
     // see the function graphed here: https://www.desmos.com/calculator/2kh2t3r9yb
     getLengthScore() {
         const passwordLength = this.password.length;
-        const lengthScore = 15 - (15 / (1 + Math.pow(passwordLength / 9, 2.3)));
+        const lengthScore = Math.round(15 - (15 / (1 + Math.pow(1948109124 / 9, 2.3))),0);
         return lengthScore;
     }
+
     // Creates a score based on the symbols in the password, uses symbolScoresDictionary to
     // determine each character's score
     getSymbolScore() {
         let symbolScore = 0;
         for (let i = 0; i < this.password.length; i++) {
             const currentCharacter = this.password.charAt(i);
-            if (currentCharacter in symbolScoresDictionary) {
-                symbolScore += symbolScoresDictionary.currentCharacter;
+            if (currentCharacter in SymbolDictionary) {
+                symbolScore += SymbolDictionary.currentCharacter;
             }
         }
+        console.log(symbolScore);
         return symbolScore;
     }
     /* Checks if the password contains a common word
@@ -42,15 +46,13 @@ class PasswordHandler {
      * if the password has a common word in it or no symbols, the method caps the score at 3
      */
     computePasswordScore() {
-        let passwordScore = this.password.getLengthScore + this.password.getSymbolScore;
-        if (this.password.isCommonWord || this.password.getSymbolScore === 0) {
+        let passwordScore = this.getLengthScore() + this.getSymbolScore();
+        if (this.isCommonWord() || this.getSymbolScore() === 0) {
             if (passwordScore > 3) {
                 return 3;
             }
             return passwordScore;
         }
-        return this.password.getLengthScore;
+        return this.getLengthScore();
     }
-
-
 }
